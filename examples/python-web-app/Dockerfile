@@ -1,14 +1,11 @@
-FROM ubuntu
+FROM python:3
 
 WORKDIR /app
 
 COPY requirements.txt /app
 COPY devops /app
 
-RUN sudo yum update && \
-    sudo yum install -y python3 python3-pip && \
-    pip install -r requirements.txt && \
-    cd devops
+RUN pip install -r requirements.txt && 
 
 ENTRYPOINT ["python3"]
 CMD ["manage.py", "runserver", "0.0.0.0:8000"]
